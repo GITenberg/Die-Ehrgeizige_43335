@@ -3,7 +3,7 @@ Die Ehrgeizige
 =====================
 
 
-This is a git repository of the source files for the book Die Ehrgeizige by Mann, Heinrich. This book is in the Public Domain, see the LICENSE file for details.
+This is a git repository of the source files for the book Die Ehrgeizige by Mann, Heinrich.  This book is in the Public Domain in the United States, see the LICENSE file for details. This book may not be in the Public Domain in Germany until 2021.
 
 Found an error?
 ===============
