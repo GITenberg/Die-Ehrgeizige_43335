@@ -1,0 +1,54 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo -H pip install git+https://github.com/gitenberg-dev/gitberg-build
+- sudo -H pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo -H pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: i6oHMaK6wh4XIlrSHruyAJ/oJnk3MDBl8DVfM8kn4mRUhNqRMvVqAAjhWxAiknx6eUvdJ4Auqr9th6MWeSOQJKZG85GAqumxa0CHFgNOxelCB6Of1vrisJ5iTGYPgfAY4vDnkZH1qIaQ5TDuTe/lfrai6iIQVgxK6sqYaZ9PyU3X1NjpuzRTz1VXEAG6LtrkdnhEflQNHOvGptapN5I9A3lWCyNf1oL55ytDI/t1GNrqb5zYJEsm0gs7Y1BnsiajeHvA2kT5EjB8NITGrdyvK66EoxN9ys82exLQwh/V7irkF1IM70wMYlDrpQhGKY9nnUEPK9UspbzOf/Q34h6rgsustWgJ1SAjOtsCXSHygMuxuI/PNrwye4P3qUfuuuEwYxNKka29qUv7oqARSnybp19NBZO2HqdO8bbsGcxre65+gGF4dtLeCmN5DYYI0NSFBuXyE+dzn+UwDY/m6sEwtuM0UqFR4QVBVvzVWPS8sRDyvz2UrvJfXPKyl+nldSFPYcj3LZQ79bnSrwR46Di8cyj+Cfh+8ltwuWnk9rAQxsOaUcpw36yGo/C7qG/4LWZyCzwk2jB0fIxHc5J+4DvFt+9e4U++LlmND4HAeX4ao/tqkAPoV+JECKlJZIZsWQiXTpBMv9Q8uY446wbSY6xfS5ECjgyo5ZM5PSSgkrVQazM=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  on:
+    repo: GITenberg/Die-Ehrgeizige_43335
+    tags: true
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy

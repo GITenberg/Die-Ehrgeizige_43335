@@ -1,0 +1,33 @@
+_repo: Die-Ehrgeizige_43335
+_version: 0.0.1
+covers:
+- cover_type: archival
+  image_path: 43335/43335-h/images/title.jpg
+  rights: Public domain in the USA.
+  rights_url: http://creativecommons.org/about/pdm
+creator:
+  author:
+    agent_name: Mann, Heinrich
+    birthdate: 1871
+    deathdate: 1950
+    gutenberg_agent_id: '35073'
+    url: http://www.gutenberg.org/2009/agents/35073
+    wikipedia:
+    - http://en.wikipedia.org/wiki/Heinrich_Mann
+    - http://de.wikipedia.org/wiki/Heinrich_Mann
+description: ''
+gutenberg_issued: '2013-07-28'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '43335'
+language: de
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Short stories'
+- !lcc 'PT'
+- !lcsh 'German fiction -- 20th century'
+- GITenberg
+title: 'Die Ehrgeizige: Novelle'
+url: http://www.gutenberg.org/ebooks/43335
